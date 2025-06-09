@@ -1,0 +1,21 @@
+/* ==UserStyle==
+@name           arxiv.org/html/, ar5iv - Latin Modern
+@description    Use Latin Modern fonts on arXiv HTML and ar5iv (requires local font installation)
+@license        MIT
+@namespace      github.com/synkathairo/userstyles
+@version        1.0.0
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/arxiv/arxiv-html-latinmodern.user.css
+==/UserStyle== */
+
+@-moz-document domain("ar5iv.labs.arxiv.org"), url-prefix("https://arxiv.org/html/") {
+:root {
+    --text-font-family: "Latin Modern Roman", "Latin Modern", "Spectral", 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, "Computer Modern", "Times New Roman", "Noto Serif", "Noto Serif Fallback", serif;
+    --headings-font-family: "Latin Modern Sans", Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, "Lucida Grande", Helvetica, Arial, "Noto Sans", "Noto Sans Fallback", sans-serif !important;
+    --code-font-family: "Latin Modern Mono", "ibm-plex-mono", monospace;
+}
+
+math {
+    font-family: "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math", "STIX Two Math", math !important;
+}
+}

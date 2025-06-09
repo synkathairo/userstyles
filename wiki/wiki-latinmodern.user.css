@@ -1,0 +1,45 @@
+/* ==UserStyle==
+@name           Wikipedia/Wikisource - Latin Modern
+@description    Use Latin Modern fonts for wiki pages
+@namespace      github.com/synkathairo/userstyles
+@license        MIT
+@version        1.0.0
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/wiki/wiki-latinmodern.user.css
+==/UserStyle== */
+
+@-moz-document domain("wikisource.org"), domain("mediawiki.org"), regexp(".*\\.wikipedia\\.org\\/w.*\\/.*"), regexp(".*\\.wikipedia\\.org\\/zh\\/.*"), regexp(".*\\.wiktionary\\.org\\/wiki\\/.*"), regexp(".*\\.wikibooks\\.org\\/wiki\\/.*") {
+body {
+    font-family: "Latin Modern Sans", "Latin Modern", Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+}
+
+h1,
+h2,
+.mw-page-title-main,
+.mw-headline,
+.mw-body h1,
+.mw-body .mw-heading1,
+.mw-body-content h1,
+.mw-body-content .mw-heading1,
+.mw-body-content h2,
+.mw-body-content .mw-heading2 {
+    font-family: "Latin Modern Roman", "Latin Modern", 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+}
+
+math,
+.mwe-math-element,
+.texhtml {
+    font-family: "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math", "STIX Two Math", math !important;
+}
+
+pre,
+code,
+tt,
+kbd,
+samp,
+.mw-code,
+.monospace,
+.mw-parser-output .monospaced {
+    font-family: "Latin Modern Mono", monospace;
+}
+}

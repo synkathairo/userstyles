@@ -1,0 +1,15 @@
+/* ==UserStyle==
+@name           claude.ai - Latin Modern Sans
+@description    Use Latin Modern fonts on claude.ai (requires local font installation)
+@license        MIT
+@namespace      github.com/synkathairo/userstyles
+@version        1.0.0
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/claude/claude-ai-latinmodernsans.user.css
+==/UserStyle== */
+
+@-moz-document domain("claude.ai") {
+:root {
+    --font-system: "Latin Modern Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+}

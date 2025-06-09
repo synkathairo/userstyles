@@ -1,0 +1,14 @@
+/* ==UserStyle==
+@name           青空文庫 (Aozora Bunko) - Font Fix: Serif
+@namespace      github.com/synkathairo/userstyles
+@version        1.0.0
+@license        MIT
+@description    Use a standard Japanese Mincho font stack on Aozora Bunko to fix CJK issues.
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/aozora/aozora-fixfontserif.user.css
+==/UserStyle== */
+@-moz-document domain("www.aozora.gr.jp") {
+    body {
+        font-family: 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', '游明朝', '游明朝体', YuMincho, 'Yu Mincho', 'ＭＳ 明朝', 'MS Mincho', HiraMinProN-W3, 'TakaoEx明朝', TakaoExMincho, 'MotoyaLCedar', 'Droid Sans Japanese', serif;
+    }
+}

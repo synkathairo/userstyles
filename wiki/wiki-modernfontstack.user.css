@@ -1,0 +1,32 @@
+/* ==UserStyle==
+@name           Wikipedia/Wikisource - modernfontstack
+@namespace      github.com/synkathairo/userstyles
+@version        1.0.0
+@license        MIT
+@author         synkathairo (https://github.com/synkathairo)
+@description    Use modern font stack for wiki pages: Old Style headers and Neo-Grotesque text, see https://modernfontstacks.com/
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/wiki/wiki-modernfontstack.user.css
+==/UserStyle== */
+@-moz-document regexp(".*\\.wikipedia\\.org\\/w.*\\/.*"),
+regexp(".*\\.wikipedia\\.org\\/zh\\/.*"),
+domain("wikisource.org"),
+regexp(".*\\.wiktionary\\.org\\/wiki\\/.*"),
+regexp(".*\\.wikibooks\\.org\\/wiki\\/.*"),
+domain("mediawiki.org") {
+    body {
+        font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    }
+
+    h1,
+    h2,
+    .mw-page-title-main,
+    .mw-headline,
+    .mw-body h1 {
+        font-family: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+    }
+
+    math,
+    .mwe-math-element {
+        font-family: "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math", "STIX Two Math", math !important;
+    }
+}
