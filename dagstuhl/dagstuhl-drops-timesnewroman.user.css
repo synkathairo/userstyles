@@ -1,0 +1,43 @@
+/* ==UserStyle==
+@name           drops.dagstuhl.de - Times New Roman
+@description    Use Times New Roman on Dagstuhl DROPS
+@license        MIT
+@namespace      github.com/synkathairo/userstyles
+@version        1.0.0
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/dagstuhl/dagstuhl-drops-timesnewroman.user.css
+==/UserStyle== */
+@-moz-document domain("drops.dagstuhl.de") {
+    :root {
+        --text-font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    }
+    body {
+        font-family: var(--text-font-family);
+    }
+    math {
+        font-family: 'Latin Modern Math', math;
+    }
+    .ltx_page_main {
+        font-family: var(--text-font-family);
+    }
+    .ltx_title_section,
+    .ltx_title_subsection,
+    .ltx_title_subsubsection,
+    .ltx_title_paragraph,
+    .ltx_title_subparagraph,
+    .ltx_title_appendix,
+    .ltx_title_theorem > .ltx_tag_theorem,
+    .ltx_tag_figure,
+    .ltx_tag_table,
+    .ltx_tag_float,
+    .ltx_tag_item,
+    .ltx_title_bibliography,
+    .ltx_description > dt,
+    .ltx_title_document,
+    .ltx_title_keywords,
+    .ltx_title_classification,
+    .ltx_title_abstract {
+        font-family: var(--text-font-family);
+    }
+}
+
