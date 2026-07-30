@@ -3,7 +3,7 @@
 @description    Use IBM Plex fonts for wiki pages
 @namespace      github.com/synkathairo/userstyles
 @license        MIT
-@version        1.0.1
+@version        1.1.0
 @author         synkathairo (https://github.com/synkathairo)
 @updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/wiki/wiki-ibmplex.user.css
 ==/UserStyle== */
@@ -47,7 +47,7 @@ regexp(".*\\.wikibooks\\.org\\/wiki\\/.*") {
     .mwe-math-element,
     .texhtml {
         font-family:
-            "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math",
+            "IBM Plex Math", "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math",
             "STIX Two Math", math !important;
     }
 
