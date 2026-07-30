@@ -3,7 +3,7 @@
 @description    Use Modern Font Stack on arXiv HTML and ar5iv
 @license        MIT
 @namespace      github.com/synkathairo/userstyles
-@version        1.0.1
+@version        1.0.2
 @author         synkathairo (https://github.com/synkathairo)
 @updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/arxiv/arxiv-html-modernfontstack.user.css
 ==/UserStyle== */
@@ -18,6 +18,7 @@ url-prefix("https://arxiv.org/html/") {
 
     math {
         font-family: "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math", "STIX Two Math", math !important;
+		font-size-adjust: ex-height from-font;
     }
 
     .ltx_page_content {
