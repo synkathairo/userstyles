@@ -1,0 +1,16 @@
+/* ==UserStyle==
+@name           NeurIPS Proceedings - Latin Modern Sans
+@namespace      github.com/synkathairo/userstyles
+@license        MIT
+@version        1.0.0
+@description    use Latin Modern Sans on NeurIPS proceedings page
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/neurips/neurips-proceedings-latin-modern.user.css
+==/UserStyle== */
+
+@-moz-document domain("proceedings.neurips.cc") {
+    :root {
+        --bs-font-sans-serif: "Latin Modern Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        --bs-font-monospace: "Latin Modern Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+}
