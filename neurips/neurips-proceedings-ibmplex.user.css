@@ -1,0 +1,19 @@
+/* ==UserStyle==
+@name           NeurIPS Proceedings - IBM Plex
+@namespace      github.com/synkathairo/userstyles
+@license        MIT
+@version        1.0.0
+@description    use IBM Plex on NeurIPS proceedings page
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/neurips/neurips-proceedings-ibmplex.user.css
+==/UserStyle== */
+
+@-moz-document domain("proceedings.neurips.cc") {
+	:root {
+		--bs-body-font-family: "IBM Plex Sans", var(--bs-font-sans-serif);
+		--bs-font-monospace: "IBM Plex Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	}
+	h1.paper-title {
+		font-family: "IBM Plex Serif", var(--bs-body-font-family);
+	}
+}

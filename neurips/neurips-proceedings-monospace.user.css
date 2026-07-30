@@ -1,0 +1,15 @@
+/* ==UserStyle==
+@name           NeurIPS Proceedings - monospace
+@namespace      github.com/synkathairo/userstyles
+@license        MIT
+@version        1.0.0
+@description    use monospace on NeurIPS proceedings page
+@author         synkathairo (https://github.com/synkathairo)
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/neurips/neurips-proceedings-monospace.user.css
+==/UserStyle== */
+
+@-moz-document domain("proceedings.neurips.cc") {
+	:root {
+		--bs-body-font-family: var(--bs-font-monospace);
+	}
+}
