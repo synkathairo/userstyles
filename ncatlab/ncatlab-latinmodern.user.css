@@ -3,14 +3,14 @@
 @description    Use Latin Modern fonts on ncatlab.org (requires local font installation)
 @license        MIT
 @namespace      github.com/synkathairo/userstyles
-@version        1.0.0
+@version        1.1.0
 @author         synkathairo (https://github.com/synkathairo)
 @updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/ncatlab/ncatlab-latinmodern.user.css
 ==/UserStyle== */
 
 @-moz-document domain("ncatlab.org") {
 body {
-    font-family: "Latin Modern Sans", "Latin Modern", 'Helvetica', 'Helvetica Neue', 'Arial', sans-serif !important;
+    font-family: "NewComputerModern Sans", "Latin Modern Sans", "Latin Modern", 'Helvetica', 'Helvetica Neue', 'Arial', sans-serif !important;
     font-size: var(--font-size-medium);
 }
 
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Latin Modern Roman", "Latin Modern", 'Times New Roman', Times, serif !important;
+    font-family: "NewComputerModern", "Latin Modern Roman", "Latin Modern", 'Times New Roman', Times, serif !important;
 }
 
 h1,
@@ -37,12 +37,12 @@ h2 {
 }
 
 math {
-    font-family: "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math", "STIX Two Math", math !important;
+    font-family: "NewComputerModern Math", "Latin Modern Math", "DejaVu Math TeX Gyre", "Cambria Math", "STIX Two Math", math !important;
 }
 
 code,
 pre {
-    font-family: "Latin Modern Mono", monospace;
+    font-family: "NewComputerModern Mono", "Latin Modern Mono", monospace;
 }
 
 .maruku_toc li {

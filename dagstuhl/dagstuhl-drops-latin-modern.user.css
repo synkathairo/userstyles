@@ -3,19 +3,20 @@
 @description    Use Latin Modern fonts on Dagstuhl DROPS (requires local font installation)
 @license        MIT
 @namespace      github.com/synkathairo/userstyles
-@version        1.0.0
+@version        1.1.0
 @author         synkathairo (https://github.com/synkathairo)
 @updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/dagstuhl/dagstuhl-drops-latin-modern.user.css
 ==/UserStyle== */
+
 @-moz-document domain("drops.dagstuhl.de") {
     body {
-        font-family: 'Latin Modern Sans', Montserrat, Fira Sans, sans-serif;
+        font-family: 'NewComputerModern Sans', 'Latin Modern Sans', Montserrat, Fira Sans, sans-serif;
     }
     math {
-        font-family: 'Latin Modern Math', math;
+        font-family: 'NewComputerModern Math', 'Latin Modern Math', math;
     }
     .ltx_page_main {
-        font-family: 'Latin Modern Roman', 'Times New Roman', Times, serif;
+        font-family: 'NewComputerModern', 'Latin Modern Roman', 'Times New Roman', Times, serif;
     }
     .ltx_title_section,
     .ltx_title_subsection,
@@ -34,7 +35,6 @@
     .ltx_title_keywords,
     .ltx_title_classification,
     .ltx_title_abstract {
-        font-family: 'Latin Modern Sans', Arial, Helvetica, sans-serif;
+        font-family: 'NewComputerModern Sans', 'Latin Modern Sans', Arial, Helvetica, sans-serif;
     }
 }
-
