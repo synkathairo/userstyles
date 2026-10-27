@@ -1,0 +1,300 @@
+/* ==UserStyle==
+@name         Muse.ai — Grok-style
+@namespace    github.com/synkathairo/userstyles
+@version      1.7.0
+@description  Grok-inspired style for muse.ai: warm light-gray page, neutral user bubble, assistant messages as full-width plain text
+@author       synkathairo (https://github.com/synkathairo)
+@license      MIT
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/muse/muse-grokstyle.user.css
+==/UserStyle== */
+
+/* userstyle written with assistance of Muse AI */
+@-moz-document domain("muse.ai") {
+
+  /* --- 0. Grok page palette, via Muse's theme variables (light) --- */
+  :root {
+    --chat-background: #f9f8f7 !important;
+    --chat-user-bubble: #f0efed !important;
+  }
+
+  body {
+    background-color: #f9f8f7 !important;
+    font-family: "Inter", Roboto, Open Sans, Arial, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  /* --- 0b. Grok page palette (dark, via .dark / data-theme) ---
+     Muse does use .dark (user-confirmed), set when the system
+     is dark. This is the single dark trigger — see header. */
+  html.dark, html[data-theme="dark"], body.dark, body[data-theme="dark"] {
+    --chat-background: #131211 !important;
+    --chat-user-bubble: #201f1d !important;
+  }
+
+  html.dark body, html[data-theme="dark"] body, body.dark {
+    background-color: #131211 !important;
+  }
+
+  /* --- 1. Assistant: kill the bubble radius system, assistant only --- */
+  [data-message-item="true"][data-message-role="assistant"],
+  [data-message-item="true"][data-message-role="assistant"] .hatch-chat-groupable-bubble {
+    --hatch-chat-bubble-radius-start-start: 0 !important;
+    --hatch-chat-bubble-radius-start-end: 0 !important;
+    --hatch-chat-bubble-radius-end-start: 0 !important;
+    --hatch-chat-bubble-radius-end-end: 0 !important;
+    --hatch-chat-bubble-render-radius-start-start: 0 !important;
+    --hatch-chat-bubble-render-radius-start-end: 0 !important;
+    --hatch-chat-bubble-render-radius-end-start: 0 !important;
+    --hatch-chat-bubble-render-radius-end-end: 0 !important;
+    --hatch-chat-bubble-continuous-radius-start-start: 0 !important;
+    --hatch-chat-bubble-continuous-radius-start-end: 0 !important;
+    --hatch-chat-bubble-continuous-radius-end-start: 0 !important;
+    --hatch-chat-bubble-continuous-radius-end-end: 0 !important;
+    --hatch-chat-bubble-corner-cap: 0 !important;
+  }
+
+  /* --- 2. Assistant body: wider, but leave room for the action rail ---
+     Muse caps it at min(85%, 100% - rail). Lift the 85% cap only. */
+  [data-hatch-assistant-message-body="true"] {
+    width: 100% !important;
+    max-width: calc(100% - var(--hatch-message-inline-action-rail-width)) !important;
+  }
+
+  /* --- 3. Assistant bubble: transparent plain text ---
+     No colour forced — text inherits Muse's theme colour. */
+  [data-hatch-assistant-message-body="true"] .hatch-chat-groupable-bubble {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0.5rem 0 !important;
+  }
+
+  /* --- 4. Assistant reading type: Grok's 15px / 1.5 --- */
+  [data-hatch-assistant-message-body="true"] .prose {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose p {
+    margin: 0 0 1em 0 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* --- 4b. Assistant markdown, Grok's rendered output ---
+     Source: Grok's streamdown rendering (its .streamdown-chat-md
+     container, sd:space-y-4). Mapped onto Muse's .prose elements —
+     Grok's class names do not exist on muse.ai, so the element
+     selectors below are the translation, not a copy.
+     HEADING SIZES (1.3.0): Grok's sizes (30/24/20/15/15/15) were
+     recorded in 1.2.0 and then deliberately removed here — the
+     user prefers Muse's descending scale. NO font-size or
+     line-height is set on any heading below, so Muse's own sizes
+     and leading show through untouched. Only Grok's semibold
+     weight and block spacing remain. */
+  [data-hatch-assistant-message-body="true"] .prose h1 {
+    font-weight: 600 !important; /* Grok font-semibold */
+    margin: 0 0 1rem 0 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose h2 {
+    font-weight: 600 !important;
+    margin: 1.5em 0 1rem 0 !important; /* Grok mt-[1.5em] */
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose h3,
+  [data-hatch-assistant-message-body="true"] .prose h4,
+  [data-hatch-assistant-message-body="true"] .prose h5,
+  [data-hatch-assistant-message-body="true"] .prose h6 {
+    font-weight: 600 !important;
+    margin: 0 0 1rem 0 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose h1:first-child,
+  [data-hatch-assistant-message-body="true"] .prose h2:first-child,
+  [data-hatch-assistant-message-body="true"] .prose h3:first-child,
+  [data-hatch-assistant-message-body="true"] .prose h4:first-child,
+  [data-hatch-assistant-message-body="true"] .prose h5:first-child,
+  [data-hatch-assistant-message-body="true"] .prose h6:first-child {
+    margin-top: 0 !important; /* Grok streamdown-first-block:mt-0 */
+  }
+
+  /* Block spacing: Grok puts 1rem between blocks. Paragraphs
+     already get that above; extend it to lists and blockquotes. */
+  [data-hatch-assistant-message-body="true"] .prose ul,
+  [data-hatch-assistant-message-body="true"] .prose ol {
+    margin: 0 0 1rem 0 !important;
+    padding-left: 1.5rem !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose li {
+    margin: 0 !important;
+    white-space: pre-wrap !important;
+  }
+
+  /* Grok list markers are secondary gray, not primary text. */
+  [data-hatch-assistant-message-body="true"] .prose ul li::marker,
+  [data-hatch-assistant-message-body="true"] .prose ol li::marker {
+    color: #636363 !important; /* Grok --fg-secondary, light */
+  }
+
+  html.dark [data-hatch-assistant-message-body="true"] .prose ul li::marker,
+  html.dark [data-hatch-assistant-message-body="true"] .prose ol li::marker,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose ul li::marker,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose ol li::marker {
+    color: #d4d4d4 !important; /* Grok --fg-secondary, dark (neutral-300) */
+  }
+
+  /* Bold / italic: Grok renders <strong> semibold, <em> italic —
+     same as usual, but pinned so Muse's prose defaults can't
+     override them. */
+  [data-hatch-assistant-message-body="true"] .prose strong {
+    font-weight: 600 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose em {
+    font-style: italic !important;
+  }
+
+  /* Inline code: Grok's signature orange pill — small mono text,
+     4px side padding, 2px radius, orange on a 10% orange wash.
+     Scoped to code NOT inside <pre>, so fenced code blocks are
+     untouched; the .prose pre code rule below reverts them. */
+  [data-hatch-assistant-message-body="true"] .prose :not(pre) > code,
+  [data-hatch-assistant-message-body="true"] .prose p code,
+  [data-hatch-assistant-message-body="true"] .prose li code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-size: 0.875em !important; /* Grok text-sm against 15px base */
+    padding: 0 4px !important; /* Grok px-1 */
+    border-radius: 2px !important; /* Grok rounded-sm */
+    background: rgba(251, 146, 60, 0.1) !important; /* orange-400/10 */
+    color: #f97316 !important; /* Grok text-orange-500 */
+  }
+
+  html.dark [data-hatch-assistant-message-body="true"] .prose :not(pre) > code,
+  html.dark [data-hatch-assistant-message-body="true"] .prose p code,
+  html.dark [data-hatch-assistant-message-body="true"] .prose li code,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose :not(pre) > code,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose p code,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose li code {
+    background: rgba(253, 186, 116, 0.1) !important; /* orange-300/10 */
+    color: #fdba74 !important; /* Grok dark:text-orange-300 */
+  }
+
+  /* Fenced code blocks: revert the inline-code treatment. */
+  [data-hatch-assistant-message-body="true"] .prose pre code {
+    background: transparent !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Blockquote: Grok gives it a small vertical margin, a border
+     colour (border-l3 in its CSS), and strips the typographic
+     quote marks Tailwind typography would otherwise add. The
+     sample shows the border colour but no explicit border width,
+     so 4px left + 1rem left padding is an interpretation, not a
+     measurement — adjust it if Grok's looks thinner on screen. */
+  [data-hatch-assistant-message-body="true"] .prose blockquote {
+    margin: 0.25rem 0 1rem 0 !important; /* Grok my-1 + block gap */
+    padding-left: 1rem !important;
+    border-left: 4px solid #e6e5e3 !important; /* Grok --border-l2-ish, light */
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+  }
+
+  html.dark [data-hatch-assistant-message-body="true"] .prose blockquote,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose blockquote {
+    border-left-color: rgba(255, 255, 255, 0.1) !important; /* Grok --border-l2, dark */
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose blockquote p::before,
+  [data-hatch-assistant-message-body="true"] .prose blockquote p::after {
+    content: none !important; /* Grok [&_p]:before/after:content-none */
+  }
+
+  /* Links (1.6.0–1.7.0): Grok's <a> has no class, so links are
+     styled by element, via the assistant .prose container —
+     mirroring Grok's chat-md-links / global-<a> approach.
+     Colour is Grok's accent; hover is Grok's accent-hover.
+     Underline (1.7.0): Grok's own stylesheet sets ONLY the
+     decoration colour, via
+       .chat-md-links :where(a:not(.not-prose,.not-prose *)) {
+         text-decoration-color: color-mix(in srgb,
+           var(--fg-primary) 30%, transparent); }
+     wrapped in @supports (color:color-mix(...)). So the
+     underline line itself is set here to make that colour
+     visible on Muse (Muse's prose may or may not underline
+     already), and the colour is Grok's exact formula, with an
+     rgba fallback first for browsers without color-mix.
+     Note the decoration colour is NOT the accent: it is the
+     primary text colour at 30% — black in light mode, white
+     in dark mode — so the underline is faint against either
+     background, while the link text itself stays accent. */
+  [data-hatch-assistant-message-body="true"] .prose a {
+    color: #0890ff !important; /* Grok --fg-accent, light */
+    text-decoration-line: underline !important;
+    -webkit-text-decoration-color: rgba(5, 5, 5, 0.3) !important;
+    text-decoration-color: rgba(5, 5, 5, 0.3) !important;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    [data-hatch-assistant-message-body="true"] .prose a {
+      -webkit-text-decoration-color: color-mix(in srgb, #050505 30%, transparent) !important;
+      text-decoration-color: color-mix(in srgb, #050505 30%, transparent) !important;
+    }
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose a:hover {
+    color: #0078d8 !important; /* Grok --fg-accent-hover, light */
+  }
+
+  html.dark [data-hatch-assistant-message-body="true"] .prose a,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose a {
+    color: #299fff !important; /* Grok --fg-accent, dark */
+    -webkit-text-decoration-color: rgba(255, 255, 255, 0.3) !important;
+    text-decoration-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    html.dark [data-hatch-assistant-message-body="true"] .prose a,
+    html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose a {
+      -webkit-text-decoration-color: color-mix(in srgb, #ffffff 30%, transparent) !important;
+      text-decoration-color: color-mix(in srgb, #ffffff 30%, transparent) !important;
+    }
+  }
+
+  html.dark [data-hatch-assistant-message-body="true"] .prose a:hover,
+  html[data-theme="dark"] [data-hatch-assistant-message-body="true"] .prose a:hover {
+    color: #47acff !important; /* Grok --fg-accent-hover, dark */
+  }
+
+  /* --- 5. User bubble: keep the bubble, Grok colours + 16px radius ---
+     Alignment, width, and text colour are NOT touched — Muse keeps
+     those. Only background and radius change, so the bubble stops
+     being blue and stops being 22px round. Direct background rules
+     are used as well as the variable, because Muse's bubble class
+     may resolve the colour through Tailwind rather than the raw var. */
+  [data-message-item="true"][data-message-role="user"] .hatch-chat-groupable-bubble {
+    background: #f0efed !important;
+    background-color: #f0efed !important;
+    border-radius: 16px !important;
+  }
+
+  html.dark [data-message-item="true"][data-message-role="user"] .hatch-chat-groupable-bubble,
+  html[data-theme="dark"] [data-message-item="true"][data-message-role="user"] .hatch-chat-groupable-bubble,
+  body.dark [data-message-item="true"][data-message-role="user"] .hatch-chat-groupable-bubble,
+  body[data-theme="dark"] [data-message-item="true"][data-message-role="user"] .hatch-chat-groupable-bubble {
+    background: #201f1d !important;
+    background-color: #201f1d !important;
+  }
+}

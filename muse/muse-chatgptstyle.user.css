@@ -1,0 +1,101 @@
+/* ==UserStyle==
+@name         Muse.ai — ChatGPT-style, no bubbles
+@namespace    github.com/synkathairo/userstyles
+@version      3.0.1
+@description  ChatGPT-style for muse.ai: user messages keep their bubble, assistant messages become full-width plain text. Minimal, surgical — only assistant turns are touched.
+@author       synkathairo (https://github.com/synkathairo)
+@license      MIT
+@updateURL      https://raw.githubusercontent.com/synkathairo/userstyles/refs/heads/master/muse/muse-chatgptstyle.user.css
+==/UserStyle== */
+
+/* userstyle written with assistance of Muse AI */
+@-moz-document domain("muse.ai") {
+    
+  body {
+    font-family: -apple-system-body,ui-sans-serif,-apple-system,system-ui,Segoe UI,Helvetica,Apple Color Emoji,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;  
+  }
+
+  /* --- 1. Kill the bubble radius system, assistant turns only --- */
+  [data-message-item="true"][data-message-role="assistant"],
+  [data-message-item="true"][data-message-role="assistant"] .hatch-chat-groupable-bubble {
+    --hatch-chat-bubble-radius-start-start: 0 !important;
+    --hatch-chat-bubble-radius-start-end: 0 !important;
+    --hatch-chat-bubble-radius-end-start: 0 !important;
+    --hatch-chat-bubble-radius-end-end: 0 !important;
+    --hatch-chat-bubble-render-radius-start-start: 0 !important;
+    --hatch-chat-bubble-render-radius-start-end: 0 !important;
+    --hatch-chat-bubble-render-radius-end-start: 0 !important;
+    --hatch-chat-bubble-render-radius-end-end: 0 !important;
+    --hatch-chat-bubble-continuous-radius-start-start: 0 !important;
+    --hatch-chat-bubble-continuous-radius-start-end: 0 !important;
+    --hatch-chat-bubble-continuous-radius-end-start: 0 !important;
+    --hatch-chat-bubble-continuous-radius-end-end: 0 !important;
+    --hatch-chat-bubble-corner-cap: 0 !important;
+  }
+
+  /* --- 2. Assistant body: wider, but leave room for the action rail ---
+     Muse caps it at min(85%, 100% - rail). Lift the 85% cap only. */
+  [data-hatch-assistant-message-body="true"] {
+    width: 100% !important;
+    max-width: calc(100% - var(--hatch-message-inline-action-rail-width)) !important;
+  }
+
+  /* --- 3. Assistant bubble: transparent plain text ---
+     No colour is forced here — text inherits Muse's theme colour,
+     which is what keeps light/dark mode working. */
+  [data-hatch-assistant-message-body="true"] .hatch-chat-groupable-bubble {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    /* No side padding (text aligns with the column edge, like
+       ChatGPT), a little vertical padding so turns don't touch. */
+    padding: 0.5rem 0 !important;
+  }
+
+  /* --- 4. Assistant reading type ---
+     Muse's prose is 15px/24px; ChatGPT-style is 16px with more air.
+     Again, no colour forced. */
+  [data-hatch-assistant-message-body="true"] .prose {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose p {
+    margin: 0 0 1em 0 !important;
+  }
+
+  [data-hatch-assistant-message-body="true"] .prose p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* ---------------------------------------------------------------
+     OPTIONAL: also flatten user turns (the v2 look).
+     Uncomment this block only if you actually want user text plain
+     too — it reintroduces the v2 trade-offs, so it is off by default.
+     --------------------------------------------------------------- */
+  /*
+  [data-message-item="true"][data-message-role="user"] [class*="group/msg"] {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline-start: 0 !important;
+    margin-left: 0 !important;
+    align-items: flex-start !important;
+  }
+  [data-message-item="true"][data-message-role="user"] .hatch-chat-groupable-bubble {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  */
+}
+
