@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         Muse.ai — Grok-style
 @namespace    github.com/synkathairo/userstyles
-@version      1.7.0
+@version      1.7.1
 @description  Grok-inspired style for muse.ai: warm light-gray page, neutral user bubble, assistant messages as full-width plain text
 @author       synkathairo (https://github.com/synkathairo)
 @license      MIT
@@ -34,9 +34,25 @@
     background-color: #131211 !important;
   }
 
-  /* --- 1. Assistant: kill the bubble radius system, assistant only --- */
-  [data-message-item="true"][data-message-role="assistant"],
-  [data-message-item="true"][data-message-role="assistant"] .hatch-chat-groupable-bubble {
+  /* --- 1. Assistant: kill the bubble radius system, prose bubbles only ---
+     1.8.0 FIX — link/document cards went rectangular: the file
+     card's inner span IS a .hatch-chat-groupable-bubble
+     (rounded-22, bg var(--hatch-agent-bubble-bg), inside
+     [data-testid^="hatch-chat-file-card-"] / .group/card), and
+     the link card's outer bubble is the same class. The old
+     rules zeroed the radius vars on the whole assistant turn
+     and flattened every bubble inside the assistant body, so
+     cards inherited square corners and lost their card look.
+     The distinction that actually separates a message from a
+     card is .prose: the main message bubble always contains a
+     .prose element (plain-text or markdown); cards do not.
+     So these rules now use :has(.prose), and the turn-wrapper
+     selector that leaked 0-radius vars into cards is gone.
+     :has() is supported in current Chrome/Firefox; if an old
+     browser dropped the whole rule, the message bubble would
+     stay rounded — cards would still be safe, which is the
+     right failure direction. */
+  [data-message-item="true"][data-message-role="assistant"] .hatch-chat-groupable-bubble:has(.prose) {
     --hatch-chat-bubble-radius-start-start: 0 !important;
     --hatch-chat-bubble-radius-start-end: 0 !important;
     --hatch-chat-bubble-radius-end-start: 0 !important;
@@ -60,8 +76,11 @@
   }
 
   /* --- 3. Assistant bubble: transparent plain text ---
-     No colour forced — text inherits Muse's theme colour. */
-  [data-hatch-assistant-message-body="true"] .hatch-chat-groupable-bubble {
+     No colour forced — text inherits Muse's theme colour.
+     Prose bubbles only (1.8.0): cards are NOT flattened here,
+     so their own padding, width, background and rounded-22
+     survive untouched. */
+  [data-hatch-assistant-message-body="true"] .hatch-chat-groupable-bubble:has(.prose) {
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
@@ -72,6 +91,49 @@
     max-width: none !important;
     min-height: 0 !important;
     padding: 0.5rem 0 !important;
+  }
+
+  /* --- 3b. Cards: restore rounded corners + card background ---
+     Belt-and-braces for 1.8.0, in case any flattening still
+     reaches a card (e.g. an older rule, or a card whose bubble
+     is not inside the assistant body). Targets, all from real
+     Muse markup the user pasted:
+       - any assistant-body bubble WITHOUT .prose (i.e. not the
+         message bubble — this is the link/document card case)
+       - file cards explicitly: [data-testid^="hatch-chat-file-card-"]
+         and .group/card, whose inner bubble is
+         .hatch-chat-groupable-bubble with rounded-22 and
+         bg var(--hatch-agent-bubble-bg, var(--color-fill-secondary))
+       - bubbles carrying data-pel-impression (the file card's
+         sandbox_file_card_impression marker)
+     Only radius + background are restored here — deliberately
+     NO padding, width, or min-height, so a card's own utilities
+     (e.g. a widget card's p-4, or the file card's w-80 parent)
+     are never overwritten by a guessed value. The radius vars
+     are restored to Muse's original 22px / 60% cap, because the
+     bubble's rendered radius is derived from those vars, not
+     just from border-radius. */
+  [data-hatch-assistant-message-body="true"] .hatch-chat-groupable-bubble:not(:has(.prose)),
+  [data-message-item="true"][data-message-role="assistant"] [data-testid^="hatch-chat-file-card-"] .hatch-chat-groupable-bubble,
+  [data-message-item="true"][data-message-role="assistant"] .group\/card .hatch-chat-groupable-bubble,
+  .hatch-chat-groupable-bubble[data-pel-impression] {
+    --hatch-chat-bubble-radius-start-start: 22px !important;
+    --hatch-chat-bubble-radius-start-end: 22px !important;
+    --hatch-chat-bubble-radius-end-start: 22px !important;
+    --hatch-chat-bubble-radius-end-end: 22px !important;
+    --hatch-chat-bubble-render-radius-start-start: 22px !important;
+    --hatch-chat-bubble-render-radius-start-end: 22px !important;
+    --hatch-chat-bubble-render-radius-end-start: 22px !important;
+    --hatch-chat-bubble-render-radius-end-end: 22px !important;
+    --hatch-chat-bubble-continuous-radius-start-start: 22px !important;
+    --hatch-chat-bubble-continuous-radius-start-end: 22px !important;
+    --hatch-chat-bubble-continuous-radius-end-start: 22px !important;
+    --hatch-chat-bubble-continuous-radius-end-end: 22px !important;
+    --hatch-chat-bubble-corner-cap: 60% !important;
+    background: var(--hatch-agent-bubble-bg, var(--color-fill-secondary)) !important;
+    background-color: var(--hatch-agent-bubble-bg, var(--color-fill-secondary)) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
   }
 
   /* --- 4. Assistant reading type: Grok's 15px / 1.5 --- */
