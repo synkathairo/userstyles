@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         Muse.ai — Grok-style
 @namespace    github.com/synkathairo/userstyles
-@version      1.7.1
+@version      1.9.1
 @description  Grok-inspired style for muse.ai: warm light-gray page, neutral user bubble, assistant messages as full-width plain text
 @author       synkathairo (https://github.com/synkathairo)
 @license      MIT
@@ -15,6 +15,7 @@
   :root {
     --chat-background: #f9f8f7 !important;
     --chat-user-bubble: #f0efed !important;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier New, Courier, monospace !important;
   }
 
   body {
@@ -136,6 +137,29 @@
     overflow: hidden !important;
   }
 
+  /* --- 3c. File preview inset: fix the top-left corner (1.9.0) ---
+     The preview inset inside a file card is
+       <span class="rounded-18 ... aspect-video"
+             style="border-start-start-radius: 4px;">
+     i.e. Muse itself overrides its top-left corner (start-start
+     in LTR) from the intended 18px down to 4px, while the other
+     corners stay at rounded-18. Geometry of the mismatch:
+     outer bubble radius 22px, inset padding p-1 = 4px, so a
+     concentric inner corner should be 22 - 4 = 18px. With a
+     4px top-left, that corner of the inset sits OUTSIDE the
+     outer bubble's 22px curve, and the outer bubble's
+     overflow: hidden clips it — the round outer corner cuts
+     straight through the inset's almost-sharp top-left.
+     Fix: override that inline 4px back to 18px, scoped to
+     file cards only. !important is required here because an
+     inline style otherwise beats any stylesheet rule. Other
+     corners are left alone — they are already rounded-18. */
+  [data-testid^="hatch-chat-file-card-"] .rounded-18,
+  .group\/card .rounded-18 {
+    border-start-start-radius: 18px !important;
+    border-top-left-radius: 18px !important;
+  }
+
   /* --- 4. Assistant reading type: Grok's 15px / 1.5 --- */
   [data-hatch-assistant-message-body="true"] .prose {
     font-size: 15px !important;
@@ -232,7 +256,7 @@
   [data-hatch-assistant-message-body="true"] .prose :not(pre) > code,
   [data-hatch-assistant-message-body="true"] .prose p code,
   [data-hatch-assistant-message-body="true"] .prose li code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-family: var(--font-mono);
     font-size: 0.875em !important; /* Grok text-sm against 15px base */
     padding: 0 4px !important; /* Grok px-1 */
     border-radius: 2px !important; /* Grok rounded-sm */
